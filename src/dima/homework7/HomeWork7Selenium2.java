@@ -4,10 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by dmitriy on 26.06.16.
@@ -19,7 +21,8 @@ import java.util.ArrayList;
  */
 public class HomeWork7Selenium2 {
 
-    public static int max = 2;
+    public static int max = 100;
+    //public static WebDriver driver = new FirefoxDriver(); // firefox передает ланг - eng и с IMDB вытыгиваются названия на англ
     public static WebDriver driver = new ChromeDriver();
 
     public static ArrayList movieNamesListImdb = new ArrayList();
@@ -37,19 +40,31 @@ public class HomeWork7Selenium2 {
     public static ArrayList combineList =new ArrayList();
 
     public static void main(String[] args) throws InterruptedException {
+
         getImdb();
+        System.out.println("----processing imdb START----");
         getIMDBtop250List();
-        System.out.println("-------------");
+        System.out.println("----processing imdb STOP----");
         getKinopoisk();
+        System.out.println("----processing Kinopoisk START----");
         getKinopoisk250List();
-        System.out.println("-------------");
+        System.out.println("----processing Kinopoisk STOP----");
+
         doCompare();
 
+        Object[] arrRate  = combineList.toArray();
+        Arrays.sort(arrRate);
 
+/*
         for (int i=0; i<combineList.size();i++){
             System.out.println(combineList.get(i));
         }
+*/
+        System.out.println("-------------");
 
+        for (int i = 0; i<arrRate.length; i++){
+            System.out.println(arrRate[i]);
+        }
         driver.close();
     }
 
@@ -58,31 +73,24 @@ public class HomeWork7Selenium2 {
         System.out.println("do compare");
 
         for (int i = 0; i<max; i++){
-            System.out.println("cikle i: " +i);
-            String s1 = deleteSpaces(movieNamesListImdb.get(i).toString());
+            String s1 = (movieNamesListImdb.get(i).toString());
            // String subs1 = s1.substring(11,s1.length());
-
-            System.out.println(s1);
-
             for (int j = 0; j<max; j++){
-                System.out.println("cikle j: "+j);
-                String s2 = deleteSpaces(movieNamesListKino.get(j).toString());
+                String s2 = (movieNamesListKino.get(j).toString());
              //   String subs2 = s2.substring(11,s2.length());
-                System.out.println(s2);
-
                 if (s1.equals(s2))
                 {
                     strb = new StringBuffer();
-                    System.out.println("if");
+
                     strb.append(movieNamesListImdb.get(i));
                     strb.append(" IMDB rate: ");
                     strb.append(movieRatesListImdb.get(i));
                     strb.append(" Kinopoisk rate: ");
                     strb.append(movieRatesListKino.get(j));
-                    System.out.println(strb.toString());
+                    //System.out.println(strb.toString());
 
-                    combineList.add(i,strb.toString());
-                } else System.out.println(i+j);
+                    combineList.add(strb.toString());
+                } //else System.out.println(i);
             }
         }
     }
@@ -124,7 +132,7 @@ public class HomeWork7Selenium2 {
             movieFulRateKino.add(i, s);
 
             //System.out.println(s);
-            System.out.println(movieFulRateKino.get(i));
+            //System.out.println(movieFulRateKino.get(i));
         }
     }
 
@@ -152,7 +160,7 @@ public class HomeWork7Selenium2 {
             movieFulRateImdb.add(i, s);
 
             //System.out.println(s);
-            System.out.println(movieFulRateImdb.get(i));
+            //System.out.println(movieFulRateImdb.get(i));
         }
     }
 
