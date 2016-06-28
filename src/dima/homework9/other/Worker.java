@@ -1,7 +1,5 @@
 package dima.homework9.other;
 
-import dima.homework9.Human;
-
 /**
  * Created by dmitriy on 11.06.16.
  */

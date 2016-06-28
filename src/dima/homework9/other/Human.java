@@ -1,4 +1,4 @@
-package dima.homework9;
+package dima.homework9.other;
 
 /**
  * Created by dmitriy on 10.06.16.
