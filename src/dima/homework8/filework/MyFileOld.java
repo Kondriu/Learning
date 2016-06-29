@@ -1,22 +1,19 @@
-package myClases;
+package dima.homework8.filework;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
-
 /**
  * Created by dmitriy on 6/2/16.
  */
-public class MyFile {
-    public static ArrayList fileExistContent;
+public class MyFileOld {
+    public static ArrayList fileExistContent = new ArrayList();
 
-    //прочитать файл построчно в лист
+    //прочитать файл
     public static List fileReadToList (String path) throws IOException {
 
         BufferedReader reader = null;
-        fileExistContent = new ArrayList();
         String line;
 
         try {
@@ -83,7 +80,7 @@ public class MyFile {
         fileWrite(path, (fileExistContent+"\n"+toAppend));
 
     }
-    //удалить заданную символьную строку. передается в "toDelete"
+    //удалить заданную строку. передается в "toDelete"
     public static void deleteString (String path, String toDelete) throws IOException {
 
         String oldFile = fileReadToString(path);
@@ -96,39 +93,5 @@ public class MyFile {
             updatedFile.delete(firstIndex, lastIndex);
         }else System.out.println("нет такой фразы");
         fileWrite(path,updatedFile.toString());
-    }
-
-    //удалить строку файла целиком
-    public static void deleteStringOfFile(String path, String seq) {
-        fileExistContent = new ArrayList();
-
-        try {
-            fileReadToList(path);
-            for (int i =0; i<fileExistContent.size(); i++){
-                if (fileExistContent.get(i).toString().indexOf(seq) != -1){
-                    fileExistContent.remove(i);
-                }
-            }
-            fileWriteFromList(path);
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void fileWriteFromList (String path){
-        StringBuilder str = new StringBuilder();
-        for (int i =0; i<fileExistContent.size(); i++){
-            str.append(fileExistContent.get(i).toString()+"\n");
-        }
-
-        try {
-            fileWrite(path,str.toString());
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
