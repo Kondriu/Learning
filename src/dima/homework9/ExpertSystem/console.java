@@ -18,11 +18,24 @@ public class console {
         */
 
         //switch ()
-        //addTeacher();
-        findTeacherByFirstName();
+
+/*
+        System.out.println("добавить учителя");
+        addTeacher();
+*/
+
+        //System.out.println("найти пр. по иммени");
+        //findTeacherByFirstName();
+
 /*        findTeacherByLastName();
         findTeacherByLastName();*/
-        deleteStringOfFile(Teacher.PathTeacher,firstName);
+
+        System.out.println("найти по имени и фамилии");
+        displayFindTeacher();
+
+        //deleteTeacher();
+
+
 
 
     }

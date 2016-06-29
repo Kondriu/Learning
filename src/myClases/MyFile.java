@@ -80,7 +80,9 @@ public class MyFile {
 
         StringBuilder fileExistContent = new StringBuilder();
         fileExistContent.append(fileReadToString(path));
-        fileWrite(path, (fileExistContent+"\n"+toAppend));
+        fileWrite(path, (fileExistContent+toAppend));
+//        fileWrite(path, (fileExistContent+"\n"+toAppend));
+
 
     }
     //удалить заданную символьную строку. передается в "toDelete"
